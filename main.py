@@ -1,5 +1,4 @@
 lst = []
-
 while True:
     try:
         K = int(input('Введите кол-во чисел, для счёта: '))
@@ -8,9 +7,7 @@ while True:
         break
     except Exception as e:
         print('Неверное значение, попробуйте снова')
-
 K += 1
-
 for z in range(1, K):
     while True:
         try:
