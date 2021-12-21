@@ -11,29 +11,41 @@ def start(message):
     bot.send_message(message.chat.id, 'Доброго время суток! Нажми /help чтобы ознакомиться с командами бота.', reply_markup=keyboard)
 
 @bot.message_handler(commands=['help'])
-def start_message(message):
+def help_message(message):
     bot.send_message(message.chat.id, 'Команды могут быть добавлены со временеи. Пока могу вот это:'
                                       '/help — вызов описания команд'
                                       '/socials — скину ссылки на аккаунты нашего отряда в соц. сетях '
                                       '/about — кратко расскажу, что такое снежный десант'
-                                      '/otr — перечислю состав нашего отряда на данный момент')
+                                      '/otr — перечислю состав нашего отряда на данный момент'
+                                      'Так же ты можешь написать мне "кот" и я пришлю кота.')
 
 @bot.message_handler(content_types=['text'])
-def answer(message):
+def word(message):
     if message.text.lower() == "погнали дальше":
         keyboard = types.ReplyKeyboardMarkup()
-        keyboard.row("О СД", "Наш отряд", "Ссылки")
+        keyboard.row("/socials", "/about", "/otr")
         bot.send_message(message.chat.id, 'О чём поговорим?', reply_markup=keyboard)
+    elif message.text.lower() == "кот":
+        bot.send_message(message.chat.id, '　　　　 .,,..;~`''''　　　　`''''＜``彡　} '
+                                          '　 _...:=,`'　 　 　︵　 т　︵　　   X彡-J'
+                                          '＜`　彡 /　　  ミ　  　,_人_.　    ＊  彡　`~ '
+                                          '　 `~=::　　　 　　　　　　           　　　Y '
+                                          '     　i.　　　　　　　　　　　　        .: '
+                                          '      　.\　　　　　　　   ,｡---.,,　　./ '
+                                          '          ヽ　／ﾞ''```\;.{　　　  ＼／'
+                                          '            Y　　　`J..r_.彳　 　 | '
+                                          '            {　　　``　　`　　　    i '
+                                          '　           \　　　　　　　　    　＼　')
 
 @bot.message_handler(commands=['socials'])
-def start_message(message):
+def socials_message(message):
     bot.send_message(message.chat.id, 'Наш инстаграм: https://instagram.com/osd_way?utm_medium=copy_link'
                                       'Наша группа вк: https://vk.com/osd_mtuci'
                                       'Наш тикток: https://vm.tiktok.com/ZSeyDFsAs/'
                                       'Мы часто проводим всякие интересности, подпишись, чтобы ничего не пропустить!')
 
 @bot.message_handler(commands=['about'])
-def start_message(message):
+def about_message(message):
     bot.send_message(message.chat.id, 'Снежный десант — молодежная добровольческая (волонтерская) акция, которая включает'
                                       ' в себя комплекс мероприятий, направленных на развитие добровольчества в молодежной среде,'
                                       ' профориентацию и содействие трудоустройству молодежи, создание условий'
@@ -42,9 +54,13 @@ def start_message(message):
                                       ' и формирование ценностей здорового образа жизни.' )
 
 @bot.message_handler(commands=['otr'])
-def start_message(message):
+def otr_message(message):
     bot.send_message(message.chat.id, 'Состав нашего отряда "Путь":'
                                       'Командир — Ксюша Яковлева'
                                       'Коммисар — Катя Сапожникова'
                                       'Бойцы — Влад Шелковин и Леша Докучаев'
                                       'Кол-во кандидатов на этот момент — 14')
+
+
+
+bot.polling(non_stop=True)
