@@ -4,7 +4,7 @@ import psycopg2
 
 app = Flask(__name__)
 conn = psycopg2.connect(database="service_db",
-                        user="ruslanzalikov",
+                        user="kolomnapop",
                         password="",
                         host="localhost",
                         port="5432")
